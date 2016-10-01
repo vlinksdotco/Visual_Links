@@ -1,0 +1,46 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+sub Application_OnStart
+Application("counter")=0
+Application("cur_user")=0
+End sub
+
+sub Session_OnStart
+
+Application("counter")=Application("counter")+1
+Application("cur_user")=Application("cur_user")+1
+
+Set conn = Server.CreateObject ("ADODB.connection")
+conn.Open "DRIVER={Microsoft Access Driver (*.mdb)}; "  & _
+"DBQ=" & Server.MapPath("db/webtran1.mdb")
+
+tr=Request.ServerVariables("REMOTE_ADDR")
+
+Set rs = Server.CreateObject ("ADODB.Recordset")
+
+sql1="select * from cc where ip='"&tr&"' and dat=#"&Date()&"#"
+rs.Open  sql1,conn
+ 
+ if rs.EOF then
+  sql="insert into cc(ip,visits)values('"&tr&"',1)" 
+  conn.Execute sql
+ else
+  cou=rs("visits")+1
+  sql="UPDATE cc set visits="&cou&" where ip='"&tr&"' and dat=#"&date()&"#"
+  conn.Execute sql
+ end if
+
+
+rs.Close
+Set rs=nothing
+conn.Close
+set conn=nothing
+
+End sub
+
+sub Session_OnEnd
+
+Application("cur_user")=Application("cur_user")-1  
+
+End sub	
+
+</SCRIPT>

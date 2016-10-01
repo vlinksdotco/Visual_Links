@@ -1,0 +1,39 @@
+# filename : robots.txt
+
+User-agent: *
+
+Allow: /index.asp
+Allow: /advertise.asp
+
+Disallow: /access_db
+Disallow: /aspnet_client
+Disallow: /but2
+Disallow: /db
+Disallow: /images
+Disallow: /pics2
+Disallow: /scripts
+Disallow: /styles
+Disallow: /delet_mas.asp
+Disallow: /delur.asp	
+Disallow: /login.asp
+Disallow: /vlmanager.asp
+Disallow: /INS_CAT.asp
+Disallow: /INS_MAS.asp
+Disallow: /ins_url..asp
+Disallow: /NEW_CAT.asp
+Disallow: /new_url.asp
+Disallow: /open_mass.asp
+Disallow: /openpage.asp
+Disallow: /search.asp
+Disallow: /statisc.asp
+Disallow: /statisc1.asp
+Disallow: /todo.html
+Disallow: /up.asp
+Disallow: /statisc1.asp
+Disallow: /up_cat.asp
+Disallow: /up_cat2.asp	
+Disallow: /up_cat3.asp
+Disallow: /up_ur.asp
+Disallow: /up_ur2.asp
+Disallow: /up_url.asp
+ 
