@@ -1,14 +1,29 @@
 <%@ Language="VBScript" %>
 <%
-' filename : index.asp
+'   filename : index.asp
 '
+'   Copyright (C) 2017  Visual Links LTD.
+'
+'   The code in this page is free software: you can redistribute it and/or modify
+'   it under the terms of the GNU General Public License as published by
+'   the Free Software Foundation, either version 3 of the License, or
+'   (at your option) any later version.
+'
+'   This program is distributed in the hope that it will be useful,
+'   but WITHOUT ANY WARRANTY; without even the implied warranty of
+'   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'   GNU General Public License for more details.
+'
+'   You should have received a copy of the GNU General Public License
+'   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 if Session("lan")="" then
  Session("lan")="in"
 end if
 
-Dim popular(15)
-Dim temp(15)
+Dim popular(25)
+Dim temp(20)
 Dim newweb(10)
 
 check_id=0 
@@ -38,7 +53,7 @@ sql3="SELECT  * FROM ur ORDER BY id DESC"
 
 rs2.Open sql2,conn
 
-for i=0 to 14
+for i=0 to 24
 popular(i)=rs2("id")
 rs2.MoveNext 
 next 
@@ -69,7 +84,7 @@ sql4="SELECT  * FROM ur "
       end if
 
       if rt=1 then 
-      for p=0 to 9
+      for p=0 to 24
        if temp_id=popular(p) then 
           rt=0
           p=9
@@ -101,12 +116,11 @@ End Function
 
 for i=0 to 14
 Randomize
-
-nRandom= Int((webcount* Rnd)+ 1)
+nRandom= Int((webcount*Rnd())+ 1)
     
-    If in_array(nRandom)then
+    If in_array(nRandom) then
 	i=i-1
-      Else
+    Else
 	temp(i)=check_id
     End If 
  
@@ -156,24 +170,24 @@ rs.Open sql,conn
 <!DOCTYPE html> 
 <html lang="en-US">                                                                            
 <head>
-<title>vlinks.co - Visual, Social & Anonymous Search Engine</title><meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="refresh" content="3600">
-<!--meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"--><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="MobileOptimized" content="320">
+<title>vlinks.co - Visual, Social & Anonymous Search Engine</title>
+<meta http-equiv="Content-Type" content="text/html; charset=WINDOWS-1255">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="MobileOptimized" content="320"><meta name="format-detection" content="telephone=no"><meta http-equiv="cleartype" content="on">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=yes">
 <meta name="HandheldFriendly" content="true">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="description" content="Your Visual, Social & Anonymous Search Engine. Imagine no more text in your search results."> 
-<meta name="keywords" content="vlinks, visual links, visual search engines, search visually, vlinks visual advertisement, vlinks visual advertising, no more text in your search results"> 
-<meta name="robots" content="index, follow, archive">
+<meta name="keywords" content="vlinks, visual links, visual search engines, search visually, vlinks visual advertisement, visual advertising, no more text in your search results"> 
+<meta name="google" content="notranslate"><meta name="robots" content="index, follow, archive">
 <meta name="author" content="Visual Links Ltd." >
 
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet"  type="text/css" href="/vendors/css/normalize.css">
-<link rel="stylesheet"  type="text/css" href="/vendors/css/grid.css"><link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet"  type="text/css" href="/vendors/css/grid.css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet"  type="text/css" href="/styles/desktop.css" media="screen and (min-width:481px)">
 <link rel="stylesheet"  type="text/css" href="/styles/mobile.css" media="only screen and (max-width:480px)">
 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300' rel='stylesheet' type='text/css'>
@@ -183,43 +197,24 @@ rs.Open sql,conn
 <script async type="text/javascript" src="/scripts/mobile.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 </head>
-<body style="text-align:center;">
- <div id="fb-root"></div>
- <script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-	  fjs.parentNode.insertBefore(js, fjs);
-	  }(document, 'script', 'facebook-jssdk'));
- </script>
- <div class="container">
- <header><nav>
-    <img id="logo" src="pic2/vlinks.co.png"   alt="Visual Links's Logo" title="Show me main page" 
-         style="left:7px;top:7px; position:absolute; border:1; box-shadow: 3px 3px 2px #585858;"     
-         onclick="window.location='index.asp'">
-<!-- share buttons --><br>
-  <div class="fb-share-button" data-href="http://www.vlinks.co" data-layout="button" data-mobile-iframe="true">
-  </div>&nbsp;
-  <!--a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.vlinks.co" 
-         data-hashtags="visual, visual search engine, visual search, advertising, ad your business, search visually">Tweet
-       </a>&nbsp;
-<script>!function(d,s,id)
-{var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}
-}(document, 'script', 'twitter-wjs');
-</script> -->
+<body style="position: relative; min-height: 100%; top: 0px;">
+<div class="container">
+<header>
+<nav>
+  <a href="index.asp">
+    <img id="logo" src="pic2/vlinks.co.png" alt="VLinks's Logo" title="Show me main page" 
+         style="left: 7px; top: 7px; position: absolute; border: 1; box-shadow: 3px 3px 2px #585858;">
+  </a>
   <h1>Your Visual, Social & Anonymous Search Engine.</h1>
   <h2>Imagine no more text in your search results.</h2>
- </nav> </header><section>
+ </nav>
+ </header>
  <div id="input_bar" style="width:auto;"> 
   <div id="bar" style="height:23%; width:auto;">                                 
-    <form method="get"  name="searchBox" autocomplete="on">    
-      <input style="height:23px; font-family: 'Open Sans', sans-serif; font-weight:300;" size="70"
-             type="search" id=text1 name=text1 autofocus  placeholder=" Search here...<%=msg%>" maxlength="80">&nbsp;   
-      <button style="height:23px;" type="button" title="Press it for Visual Search" 
-              onclick="document.getElementById('demo').innerHTML = submitForm()">Search
-      </button>&nbsp;&nbsp;
+    <form method="get"  name="searchBox" autocomplete="on">      <label for="search">       </label> 
+      <input style="height: 23px; font-family: 'Open Sans', sans-serif; font-weight: 300;" onmouseover="foo" onfocus="bar" size="70"
+             type="text" id=text1 name=text1 autofocus placeholder=" Search here...<%=msg%>" maxlength="80">&nbsp;
+      <button type="button" onclick="document.getElementById('').innerHTML = submitForm()">&nbsp;Search&nbsp;</button>&nbsp;&nbsp;
       <img class="plus" src="/images/plus.png" alt="Add your site/Report for broken link"
            title="Add your site / Report for broken link" 
            style="margin-top: -5px; position:absolute; height:auto; width:auto; cursor:pointer; border:0;"
@@ -228,8 +223,11 @@ if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.t
  </div>
 <!-- ************************* Advertisers rubric starts here ************************* -->
 <div id="ads_rubric" style="margin-left:-25px;">
-<h3>OUR ADVERTISERS</h3>
-  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="a1">      <img class="ad-photo" src="images/adver.png" alt="ad website"         title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"         onclick='aclick("openpage.asp?id=2625")' id="a2"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<h4>OUR ADVERTISERS</h4>
+  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="a1">
+      <img class="ad-photo" src="images/adver.png" alt="ad website" 
+        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858" 
+        onclick='aclick("openpage.asp?id=2625")' id="a2"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="b1">
       <img class="ad-photo" src="images/adver.png" alt="ad website" 
         title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"
@@ -259,7 +257,7 @@ k=0
 do until rs2.EOF or i>10
 %>
               <a href="<%=rs2("url")%>" target="_blank">
-                <img id="popular_link" src="pic2/<%=rs2("pic")%>" title="<%=rs2("rev")%>" alt="Popular Link"   
+                <img src="pic2/<%=rs2("pic")%>" title="<%=rs2("rev")%>" alt="Popular Link"   
 style="box-shadow: 3px 3px  2px #585858;"                         
 onmouseover="window.status='<%=rs2("url")%>'" onmouseout="window.status=''" 
 onclick='aclick("openpage.asp?id=<%=rs2("id")%>")'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -287,7 +285,7 @@ loop
 %>
     
           <a href="<%=rs4("url")%>" target="_blank">
-              <img  id="random_link" src="pic2/<%=rs4("pic")%>"  title="<%=rs4("rev")%>" alt="Random Link"   
+              <img src="pic2/<%=rs4("pic")%>"  title="<%=rs4("rev")%>" alt="Random Link"   
 style="box-shadow: 3px 3px 2px #585858;"                         
 onmouseover="window.status='<%=rs4("url")%>'" onmouseout="window.status=''" 
 onclick='aclick("openpage.asp?id=<%=rs4("id")%>")'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -312,12 +310,12 @@ k=0
 do until rs2.EOF or i>5
 %>
         <a href="<%=rs2("url")%>" target="_blank">
-          <img id="new_link" src="pic2/<%=rs2("pic")%>" title="<%=rs2("rev")%>" alt="New Link"  
+          <img src="pic2/<%=rs2("pic")%>" title="<%=rs2("rev")%>" alt="New Link"  
 style="box-shadow: 3px 3px 2px #585858;"                   
 onmouseover="window.status='<%=rs2("url")%>'" onmouseout="window.status=''" 
 onclick='aclick("openpage.asp?id=<%=rs2("id")%>")'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<%if k=4 then%><br><%end if%>
+<%if k=4 then%><br><br><%end if%>
 <%
 rs2.MoveNext 
 i=i+1
@@ -354,10 +352,15 @@ loop
     <audio autoplay="autoplay">  <source src="sounds/Banana_Slap.mp3" type="audio/mpeg">
     </audio>
     <h3 style="text-align:center; color:red;">No results found.</h3>
-    <p style="text-align:center; color:#009933; text-shadow: 1px 1px 3px #585858;">TRY TO FIND BELOW :</p>
+    <p style="text-align:center; color:#009933; text-shadow: 1px 1px 3px #585858;">TRY TO FIND BELOW :</p><br>
        <a href="https://www.google.co.il/?gfe_rd=cr&ei=zMXuVabjIemT8QfXgZ-wCA&gws_rd=cr#q=<%=SearchText%>" 
           target="_blank">
           <img src="pic2/google.com.png" alt="Google" title=""
+            style="box-shadow: 3px 3px 2px #585858;" >
+       </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a href="https://en.wikipedia.org/w/index.php?title=Special:Search&profile=default&fulltext=Search&search=<%=SearchText%>&searchToken=di3txgtu4gp67p4vojfj6bf8x"
+          target="_blank">
+          <img src="pic2/wikipedia.org.png" alt="wikipedia.org" title=""
             style="box-shadow: 3px 3px 2px #585858;" >
        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        <a href="http://www.bing.com/search?q=<%=SearchText%>&qs=n&form=QBLH&pq=<%=SearchText%>&sc=0-0&sp=-1&sk=&cvid=dd14addde2474605a2fb1b5726831246&adlt=strict" 
@@ -365,11 +368,16 @@ loop
           <img src="pic2/bing.com.png" alt="Bing" title=""
             style="box-shadow: 3px 3px 2px #585858;" >
        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a href="https://www.youtube.com/results?search_query=<%=SearchText%>" 
+          target="_blank">
+          <img src="pic2/youtube.com.png" alt="YouTube" title=""
+            style="box-shadow: 3px 3px 2px #585858;" >
+       </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        <a href="https://search.yahoo.com/search;_ylt=A2KJyw5dJflV03gBOzabvZx4?p=<%=SearchText%>&toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-901&fp=1" 
           target="_blank">
           <img src="pic2/yahoo.com.png" alt="Yahoo" title=""
             style="box-shadow: 3px 3px 2px #585858;" >
-       </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
        <a href="https://duckduckgo.com/?q=<%=SearchText%>" 
           target="_blank">
           <img src="pic2/duckduckgo.com.png" alt="DuckDuckGo" title=""
@@ -379,20 +387,10 @@ loop
           target="_blank">
           <img src="pic2/yandex.com.png" alt="Yandex" title=""
             style="box-shadow: 3px 3px 2px #585858;" >
-       </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-       <a href="http://nova.rambler.ru/search?scroll=1&utm_source=nhp&utm_content=search&utm_medium=button&utm_campaign=self_promo&query=<%=SearchText%>&btnG=%D0%9D%D0%B0%D0%B9%D1%82%D0%B8" 
-          target="_blank">
-          <img src="pic2/rambler.ru.png" alt="Rambler" title=""
-            style="box-shadow: 3px 3px 2px #585858;" >
        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <a href="https://en.wikipedia.org/w/index.php?title=Special:Search&profile=default&fulltext=Search&search=<%=SearchText%>&searchToken=di3txgtu4gp67p4vojfj6bf8x"
+       <a href="https://vimeo.com/search?q=<%=SearchText%>" 
           target="_blank">
-          <img src="pic2/wikipedia.org.png" alt="wikipedia.org" title=""
-            style="box-shadow: 3px 3px 2px #585858;" >
-       </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <a href="https://www.youtube.com/results?search_query=<%=SearchText%>" 
-          target="_blank">
-          <img src="pic2/youtube.com.png" alt="YouTube" title=""
+          <img src="pic2/vimeo.com.png" alt="Rambler" title=""
             style="box-shadow: 3px 3px 2px #585858;" >
        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        <a href="https://translate.google.com/#auto/en/<%=SearchText%>" 
@@ -460,7 +458,7 @@ if k>4 then k=0 end if
 loop
 %>
 <%end if%>
-</section>
+
  <footer><br>
 <div><!-- p>
         <a href="/">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -469,7 +467,7 @@ loop
         <a href="/privacy_policy.html">Privacy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
         <a href="/terms.html">Terms</a>
      </p -->
- <span>&copy;&nbsp;2016&nbsp;Visual Links Ltd.</span>
+ <span>&copy;&nbsp;2017&nbsp;Visual Links Ltd.</span>
       All rights reserved.&nbsp;The website is not responsible for any linked web site.&nbsp;
 <a href="http://www.vlinks.co" title="Back to top page." class="tooltip">
     <img alt="Home" src="http://www.vlinks.co/images/favicon.ico" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;&nbsp;
