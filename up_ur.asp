@@ -29,40 +29,32 @@ end if
 <head>
 <title>Update URL</title>
 <meta http-equiv="content-type" content="text/html;  charset=windows-1255">
-<meta name="viewport" content="user-scalable=no, width=device-width">
-<link rel="stylesheet"  type="text/css"
-         href="mobile.css" media="only screen and (max-width: 480px)">
-<link rel="stylesheet"  type="text/css"
-         href="desktop.css" media="screen and (min-width: 481px )">
-<!-- [if IE]>
-<link rel="stylesheet" type="text/css" href=explorer.css" media="all />
-<! [endif] -->
+<meta name="viewport" content="user-scalable=no, width=device-width"><link rel="stylesheet"  type="text/css" href="desktop.css" media="screen and (min-width:481px)">
+<link rel="stylesheet"  type="text/css" href="mobile.css" media="only screen and (max-width:480px)">
 </head>
 
-<body><center>
+<body style="text-align:center;">
+<br>
 <img src="/pic2/vlinks.co.png" alt="Logo" title="Go to main page"
-          onclick="window.location='vl_manager.asp' "style="cursor:pointer;cursor:hand"><br>
+          onclick="window.location='vl_manager.asp'" style="border: 1px solid black; cursor:pointer;cursor:hand"><br>
 <h3>Management System v. 1.0.2</h3>
 <h4>Select the category & icon then  update the data</h4>
-<table style="text-align:center; /*border-style:outset;*/">
-  <tr height=10>
-		<table  style="text-align:center; border-style:outset"> <!-- dir=rtl> -->
-		<tr height=10 align=center>
+<table class="details" style="border: 1px solid black; width:100%; border-collapse:collapse">
+  <tr>
+		<table class="details" style="border: 1px solid black; width:100%; border-collapse:collapse">
+		<tr>
 
 		<%do until rs.EOF %>
-		<td width=100 align=center style="border-style:0;
-		                                  background-color:#00008b;
-		                                  border-width:1pix;
-		                                  color:#d3d3d3;cursor:pointer;
-		                                  cursor:hand;"   onmouseover='this.style.backgroundColor="#4169e1";this.style.color="#ffd700"' onmouseout='this.style.backgroundColor="#00008b";this.style.color="#d3d3d3"'
-		onclick="window.location='up_ur.asp?cat=<%=rs("cat")%> '"><%=rs("cat")%>
+		<td style="border-style:0; background-color:blue; border-width:1px; color:yellow; cursor:pointer; border:1; cursor:hand;" onmouseover='this.style.backgroundColor="red";this.style.color="black"' 
+                onmouseout='this.style.backgroundColor="blue";this.style.color="yellow"'
+		     onclick="window.location='up_ur.asp?cat=<%=rs("cat")%> '"><%=rs("lan")%>
 		</td>
 
 <%
 count=count+1
 if count=8 then
 %>
-		<tr height=10 align=center>
+		<tr>
 <%
 count=0
 end if
@@ -72,26 +64,19 @@ end if
 rs.MoveNext 
 loop
 %>
-		</table>
+		</table> <br>
 <%if temp=0 then%>
-		<tr>
-	<td>
-<table  align=center  dir=rtl>
-	<tr height=10 align=center >
 
 <%do until rs2.EOF %>
-	<td>
+<% j=0 %>
 		<img src=pic2/<%=rs2("pic")%> title="<%=rs2("rev")%>" 
-		     onclick="window.location='up_ur2.asp?id=<%=rs2("id")%>'" border="1"  			  style="cursor:pointer;cursor:hand">
-	</td>
-
-
+		     onclick="window.location='up_ur2.asp?id=<%=rs2("id")%>'"	>	                  <!--style="border:1px solid blue; box-shadow: 3px 3px  2px #585858; border: 1; cursor:pointer;  cursor:hand"-->
+<%if j=4 then%><br><br><%end if%>
 
 <%
 count2=count2+1
 if count2=5 then
 %>
-	<tr height=10 align=center>
 
 <%
 count2=0
@@ -102,10 +87,9 @@ end if
 rs2.MoveNext 
 loop
 %>
-	</table>
-	</td>
+	
 <%end if%>
-</table>
+
 </body>
 </html>
 

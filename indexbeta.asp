@@ -21,9 +21,9 @@ if Session("lan")="" then
  Session("lan")="in"
 end if
 
-Dim popular(15)
-Dim temp(10)
-Dim newweb(5)
+Dim popular(25)
+Dim temp(20)
+Dim newweb(10)
 
 check_id=0 
 
@@ -47,20 +47,20 @@ webcount=rs2("urll")
 rs2.Close
 
 '---------------------------------------------------------------------------
-sql2="SELECT TOP 15 * FROM ur ORDER BY click DESC"
+sql2="SELECT TOP 25 * FROM ur ORDER BY click DESC"
 sql3="SELECT  * FROM ur ORDER BY id DESC"
 
 rs2.Open sql2,conn
-' popilar links
-for i=0 to 14
+
+for i=0 to 24
 popular(i)=rs2("id")
 rs2.MoveNext 
 next 
 rs2.Close
 
 rs2.Open sql3,conn
-' new links
-for i=0 to 4
+
+for i=0 to 9
 newweb(i)=rs2("id")
 rs2.MoveNext 
 next 
@@ -231,7 +231,7 @@ rs.Open sql,conn
 <% 
 i=1
 k=0
-do until rs2.EOF or i>15
+do until rs2.EOF or i>10
 %>
               <a href="<%=rs2("url")%>" target="_blank">
                 <img class="enlarge" src="pic2/<%=rs2("pic")%>" title="<%=rs2("rev")%>" alt="Popular Link"   
@@ -447,15 +447,17 @@ loop
      </p -->
  <span>&copy;&nbsp;2017&nbsp;Visual Links Ltd.</span>
       All rights reserved.&nbsp;The website is not responsible for any linked web site.
-<!--a href="http://www.vlinks.co" title="Back to top page." class="tooltip">
+<a href="http://www.vlinks.co" title="Back to top page." class="tooltip">
     <img alt="Home" src="http://www.vlinks.co/images/favicon.ico" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;
+<!-- Social presence -->
 <a href="mailto:info@vlinks.co" title="Email to us." target="_blank" class="tooltip">
     <img alt="Email" src="http://www.vlinks.co/images/mail.png" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;
 <a href="https://www.facebook.com/pages/Visual-Links-vlinksco/183003611893479" title="Find us on Facebook" target="_blank" class="tooltip">
     <img alt="Facebook" src="http://www.vlinks.co/images/facebook.png" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;
 <a href="https://twitter.com/VisualLinks" title="Find us on Twitter" target="_blank" class="tooltip">
-    <img alt="Twitter" src="http://www.vlinks.co/images/twitter.png" style="height:auto;width:auto;cursor:pointer; border:0"></a-->
- </footer><br>
+    <img alt="Twitter" src="http://www.vlinks.co/images/twitter.png" style="height:auto;width:auto;cursor:pointer; border:0"></a><br>
+ </footer>
+
 <div id=pa1 style="visibility:hidden; width:5; height:5" ><!--iframe src="clon.asp"  height=5 width=5></iframe-->  
 </div>
 <!-- *************************** Draw plus window starts here *************************** -->

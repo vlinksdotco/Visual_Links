@@ -18,17 +18,12 @@ rs2.Open sql2,conn
 <html lang="en">
 
 <head>
-<title>Update URL - search</title>
+<title>Update URL - Search</title>
 <meta http-equiv="content-type" content="text/html;  charset=utf-8">
 <meta name="viewport" content="user-scalable=yes, width=device-width">
-<link rel="stylesheet"  type="text/css"
-         href="mobile.css" media="only screen and (max-width: 480px)">
-<link rel="stylesheet"  type="text/css"
-         href="desktop.css" media="screen and (min-width: 481px )">
-<!-- [if IE]>
-<link rel="stylesheet" type="text/css" href=explorer.css" media="all />
-<! [endif] -->
- </head>
+<link rel="stylesheet"  type="text/css" href="mobile.css" media="only screen and (max-width: 480px)">
+<link rel="stylesheet"  type="text/css" href="desktop.css" media="screen and (min-width: 481px )">
+</head>
  
 <body>
 <center>
@@ -36,15 +31,15 @@ rs2.Open sql2,conn
           title="Go to main page"  onclick="window.location='vl_manager.asp' " >
 <br>
 <hr>
-<h3>Management System v. 1.1</h3>
+<h3>Management System v. 1.0.4</h3>
 <hr>
 <form name="searchBox" method="post">
  <table>
   <tr>	   
    <td>
-	<input type="text"  name="text1"  <%if SearchText="" then %>value=""  <%else%>value=" <%=SearchText%>"<%end if%> 
-                   style="height:30;width:70;font-size:20" 
-                   placeholder="Enter here what you want to find" autofocus >
+	<input type="text"  name="text1" size="50" maxlength="80"<%if SearchText="" then %>value=""  <%else%>value=" <%=SearchText%>"<%end if%> 
+             style="font-family: 'Open Sans', sans-serif; font-size:14px; font-weight:300;" 
+             placeholder="Search here" autofocus >
    </td>
    <td>
 	<input type="submit" value="Search">
@@ -60,10 +55,10 @@ rs2.Open sql2,conn
 k=0
 do until rs2.EOF 
 %>
-
-   <td>
-      <img src=pic2/<%=rs2("pic")%> title="<%=rs2("rev")%>" onclick="window.location='up_ur2.asp?id=<%=rs2("id")%>'" onmouseover="window.status='<%=rs2("url")%>'" onmouseout="window.status=''">
-   </td> 
+<td>
+  <img src=pic2/<%=rs2("pic")%> title="<%=rs2("rev")%>" alt="Search result"   
+       style="box-shadow: 3px 3px  2px #585858; margin-left:30px; margin-top:10px; border:1;"                           onclick="window.location='up_ur2.asp?id=<%=rs2("id")%>'"        onmouseover="window.status='<%=rs2("url")%>'" onmouseout="window.status=''">
+</td> 
 
 <%if k=4 then%><tr>
 <%end if%>

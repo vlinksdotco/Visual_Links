@@ -21,9 +21,9 @@ if Session("lan")="" then
  Session("lan")="in"
 end if
 
-Dim popular(15)
-Dim temp(10)
-Dim newweb(5)
+Dim popular(25)
+Dim temp(20)
+Dim newweb(10)
 
 check_id=0 
 
@@ -47,20 +47,20 @@ webcount=rs2("urll")
 rs2.Close
 
 '---------------------------------------------------------------------------
-sql2="SELECT TOP 15 * FROM ur ORDER BY click DESC"
+sql2="SELECT TOP 25 * FROM ur ORDER BY click DESC"
 sql3="SELECT  * FROM ur ORDER BY id DESC"
 
 rs2.Open sql2,conn
-' popilar links
-for i=0 to 14
+
+for i=0 to 24
 popular(i)=rs2("id")
 rs2.MoveNext 
 next 
 rs2.Close
 
 rs2.Open sql3,conn
-' new links
-for i=0 to 4
+
+for i=0 to 9
 newweb(i)=rs2("id")
 rs2.MoveNext 
 next 
@@ -83,7 +83,7 @@ sql4="SELECT  * FROM ur "
       end if
 
       if rt=1 then 
-      for p=0 to 9
+      for p=0 to 24
        if temp_id=popular(p) then 
           rt=0
           p=9
@@ -92,10 +92,10 @@ sql4="SELECT  * FROM ur "
    end if    
     
       if rt=1 then 
-          for l=0 to 4
+          for l=0 to 9
           if temp_id=newweb(l) then 
           rt=0
-          l=4
+          l=9
          end if
        next       
        end if
@@ -113,7 +113,7 @@ End If
 
 End Function
 
-for i=0 to 9
+for i=0 to 14
 Randomize
 nRandom= Int((webcount*Rnd())+ 1)
     
@@ -199,18 +199,15 @@ rs.Open sql,conn
 <body style="position: relative; min-height: 100%; top: 0px;">
 <div class="container">
 <header>
-  <!-- a href="index.asp">
+<nav>
+  <a href="index.asp">
     <img class="logo" src="pic2/vlinks.co.png" alt="VLinks's Logo" title="Show me main page" 
          style="left: 7px; top: 7px; position: absolute; border: 1; box-shadow: 3px 3px 2px #585858;">
-  </a -->
+  </a>
   <h1>Your Visual, Social & Anonymous Search Engine.</h1>
   <h2>Imagine no more text in your search results.</h2>
+ </nav>
  </header>
-
- <a href="index.asp">
-    <img class="logo" src="pic2/vlinks.co.png" alt="VLinks's Logo" title="Show me main page">
-  </a>
-
  <div id="input_bar" style="width:auto;"> 
   <div id="bar" style="height:23%; width:auto;">                                 
     <form method="get"  name="searchBox" autocomplete="on">&nbsp;&nbsp;&nbsp;
@@ -218,12 +215,31 @@ rs.Open sql,conn
              type="text" id=text1 name=text1 autofocus placeholder=" Search here...<%=msg%>" maxlength="80">&nbsp;
       <button type="button" onclick="document.getElementById('').innerHTML = submitForm()">&nbsp;Search&nbsp;</button>&nbsp;&nbsp;
       <img class="image_no_shadow" src="/images/plus.png" alt="Add your site/Report for broken link"
-           title="Add your site / Report for broken link" 
-           style="margin-top: -5px; position:absolute; height:auto; width:auto; cursor:pointer; border:1;"
+           title="Add your site / Report for broken link" style="margin-top: -5px; position:absolute; height:auto; width:auto; cursor:pointer; border:0;"
            onclick="document.getElementById('').innerHTML = showse()">
     </form>
  </div>
-
+<!-- ************************* Advertisers rubric starts here ************************* -->
+<div id="ads_rubric" style="margin-left:-4px;">
+<h4>OUR ADVERTISERS</h4>
+  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="a1">
+      <img class="enlarge" src="images/adver.png" alt="ad website" 
+        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858" 
+        onclick='aclick("openpage.asp?id=2625")' id="a2"></a>&nbsp;
+  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="b1">
+      <img class="enlarge" src="images/adver.png" alt="ad website" 
+        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"
+        onclick='aclick("openpage.asp?id=2625")' id="b2"></a>&nbsp;
+  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="c1">
+      <img class="enlarge" src="images/adver.png" alt="ad website" 
+        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"        onclick='aclick("openpage.asp?id=2625")' id="c2"></a>&nbsp;
+  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="d1">
+      <img class="enlarge" src="images/adver.png" alt="ad website" 
+        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"        onclick='aclick("openpage.asp?id=2625")' id="d2"></a>&nbsp;
+  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="e1">
+      <img class="enlarge" src="images/adver.png" alt="ad website" 
+        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"        onclick='aclick("openpage.asp?id=2625")' id="e2"></a></div>
+<br>
 <%if cat ="" and  SearchText="" then%>
 <!-- ************************* Most popular rubric starts here *************************** -->
 <div id="pop_rubric"> 
@@ -231,7 +247,7 @@ rs.Open sql,conn
 <% 
 i=1
 k=0
-do until rs2.EOF or i>15
+do until rs2.EOF or i>10
 %>
               <a href="<%=rs2("url")%>" target="_blank">
                 <img class="enlarge" src="pic2/<%=rs2("pic")%>" title="<%=rs2("rev")%>" alt="Popular Link"   
@@ -254,7 +270,7 @@ loop
 <%
     k=0
 
-    for i=0 to 9
+    for i=0 to 14
     sql4="SELECT  * FROM ur where id="&temp(i)
     rs4.Open sql4,conn
 %>
@@ -270,7 +286,7 @@ loop
   next  
 %>
 </div>
-<!-- *************************** New coming rubric starts here **************************-->
+<!-- *************************** New coming rubric starts here ************************** -->
 <div id="new_rubric">
 <h3>CHECK OUR NEW SITES</h3>&nbsp;
 <%
@@ -316,36 +332,12 @@ loop
 <%end if%>
 <!-- by search1 -->
 <% if not SearchText="" and cat="" then %>
-<!-- ************************* Advertisers rubric starts here ************************* -->
-<div id="ads_rubric" style="margin-left:-4px;">
-<h4>OUR ADVERTISERS</h4>
-  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="a1">
-      <img class="enlarge" src="images/adver.png" alt="ad website" 
-        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858" 
-        onclick='aclick("openpage.asp?id=2625")' id="a2"></a>&nbsp;
-  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="b1">
-      <img class="enlarge" src="images/adver.png" alt="ad website" 
-        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"
-        onclick='aclick("openpage.asp?id=2625")' id="b2"></a>&nbsp;
-  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="c1">
-      <img class="enlarge" src="images/adver.png" alt="ad website" 
-        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"
-        onclick='aclick("openpage.asp?id=2625")' id="c2"></a>&nbsp;
-  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="d1">
-      <img class="enlarge" src="images/adver.png" alt="ad website" 
-        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"
-        onclick='aclick("openpage.asp?id=2625")' id="d2"></a>&nbsp;
-  <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="e1">
-      <img class="enlarge" src="images/adver.png" alt="ad website" 
-        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858"
-        onclick='aclick("openpage.asp?id=2625")' id="e2"></a>
-</div>
-<br>
+
 <%if rs2.EOF then %>  
     <audio autoplay="autoplay">  <source src="sounds/Banana_Slap.mp3" type="audio/mpeg">
     </audio>
-    <h3 style="text-align:center; color:red;">No results found.</h3>        <!-- Show where else to search -->
-    <p style="text-align:center; color:#009933; text-shadow: 1px 1px 3px #585858;">       <h3>Try to find below OR press on orange plus icon to add your web site.</h3>    </p>    <br>
+    <h2 style="text-align:center; color:red;">No results found.</h2>    <!-- Show where else to search -->
+    <p style="text-align:center; color:#009933; text-shadow: 1px 1px 3px #585858;">       <h2>TRY TO FIND BELOW :</h2>    </p>    <br>
        <a href="https://www.google.co.il/?gfe_rd=cr&ei=zMXuVabjIemT8QfXgZ-wCA&gws_rd=cr#q=<%=SearchText%>" target="_blank">
           <img class="enlarge" src="pic2/google.com.png" alt="Google" title=""
                style="box-shadow: 3px 3px 2px #585858;">
@@ -365,7 +357,7 @@ loop
        <a href="https://search.yahoo.com/search;_ylt=A2KJyw5dJflV03gBOzabvZx4?p=<%=SearchText%>&toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-901&fp=1" target="_blank">
           <img class="enlarge" src="pic2/yahoo.com.png" alt="Yahoo" title=""
                style="box-shadow: 3px 3px 2px #585858;">
-       </a>       <br>
+       </a>       <br>&nbsp;
        <a href="https://duckduckgo.com/?q=<%=SearchText%>" target="_blank">
           <img class="enlarge" src="pic2/duckduckgo.com.png" alt="DuckDuckGo" title=""
                style="box-shadow: 3px 3px 2px #585858;">
@@ -387,8 +379,13 @@ loop
                style="box-shadow: 3px 3px 2px #585858;">
        </a>
     </p>      
-<%else%><h3 style="text-align:center; color:#31B404;">Found <%=web_qty%> results:</h3>
+<%else%><h2 style="text-align:center; color:#31B404;">Found <%=web_qty%> results:</h2>
 <% end if %>
+
+<h3>*&nbsp;&nbsp;PRESS ON PLUS&nbsp;<img class="plus" src="/images/plus.png" alt="Add your site/Report for broken link"
+           title="Add your site / Report for broken link" 
+           style="margin-left: -1px; position: absolute; height:auto; width:auto; cursor:pointer; border:0;"
+           onclick="document.getElementById('').innerHTML = showse()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;TO ADD YOUR WEB SITE.</h3>
 
 <% 
 i=0
@@ -437,8 +434,8 @@ loop
 %>
 <%end if%>
 
- <footer>
-<!-- p>
+ <footer><br>
+<div><!-- p>
         <a href="/">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
         <a href="/about.html">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
         <a href="/vlinks_ads.asp">Advertising</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -446,16 +443,19 @@ loop
         <a href="/terms.html">Terms</a>
      </p -->
  <span>&copy;&nbsp;2017&nbsp;Visual Links Ltd.</span>
-      All rights reserved.&nbsp;The website is not responsible for any linked web site.
-<!--a href="http://www.vlinks.co" title="Back to top page." class="tooltip">
-    <img alt="Home" src="http://www.vlinks.co/images/favicon.ico" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;
+      All rights reserved.&nbsp;The website is not responsible for any linked web site.&nbsp;
+<a href="http://www.vlinks.co" title="Back to top page." class="tooltip">
+    <img alt="Home" src="http://www.vlinks.co/images/favicon.ico" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;&nbsp;
+<!-- Social presence -->
 <a href="mailto:info@vlinks.co" title="Email to us." target="_blank" class="tooltip">
-    <img alt="Email" src="http://www.vlinks.co/images/mail.png" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;
+    <img alt="Email" src="http://www.vlinks.co/images/mail.png" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;&nbsp;
 <a href="https://www.facebook.com/pages/Visual-Links-vlinksco/183003611893479" title="Find us on Facebook" target="_blank" class="tooltip">
-    <img alt="Facebook" src="http://www.vlinks.co/images/facebook.png" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;
+    <img alt="Facebook" src="http://www.vlinks.co/images/facebook.png" style="height:auto;width:auto;cursor:pointer; border:0"></a>&nbsp;&nbsp;&nbsp;
 <a href="https://twitter.com/VisualLinks" title="Find us on Twitter" target="_blank" class="tooltip">
-    <img alt="Twitter" src="http://www.vlinks.co/images/twitter.png" style="height:auto;width:auto;cursor:pointer; border:0"></a-->
- </footer><br>
+    <img alt="Twitter" src="http://www.vlinks.co/images/twitter.png" style="height:auto;width:auto;cursor:pointer; border:0"></a><br><br>
+  </div>
+ </footer>
+
 <div id=pa1 style="visibility:hidden; width:5; height:5" ><!--iframe src="clon.asp"  height=5 width=5></iframe-->  
 </div>
 <!-- *************************** Draw plus window starts here *************************** -->

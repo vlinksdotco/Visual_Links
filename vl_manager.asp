@@ -34,9 +34,9 @@ $(document).ready(function(){
         $("#ads").toggle(); // do on/off with toggle
     });
 });
-
+$(document).ready(function(){    $("img").click(function(){        $(this).hide();    });});
 function about(){
-  alert('VL Manager v. 1.0.1\nWritten by Visual Links team.');
+  alert('VL Manager v. 1.0.3\nWritten by Visual Links team.');
 }
 /*
 var today = new Date().getDay(); // print number of day
@@ -60,23 +60,24 @@ else{
 </script>
 
 <title>VL Manager</title>
-<meta http-equiv="content-type" content="text/html;  charset=utf-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="user-scalable=no, width=device-width">
 <meta name="robots" content="noindex">
 
 <link rel="stylesheet" type="text/css" href="mobile.css" media="only screen and (max-width: 480px)">
-<!--link rel="stylesheet" type="text/css" href="desktop.css" media="screen and (min-width: 481px )"-->
+<link rel="stylesheet" type="text/css" href="desktop.css" media="screen and (min-width: 481px)">
 </head>
 
 <body style="text-align:center;">
 <header> 
 <div style="float:left;">
 <img src="pic2/vlinks.co.png"   alt="Visual Links's Logo" title="Show me main page" 
-    style="position:absolute; border-color:blue; box-shadow:3px 3px 2px #585858;"     
+    style="position:absolute; border:1; border-color:blue; box-shadow:3px 3px 2px #585858;"     
     onclick="window.location='index.asp'">
 </div>
 </header>
-<h1>Management System v. 1.2</h1>
+<h1>Management System v. 1.0.4</h1>
+
 <%
 'date
 Function myfunction()
@@ -84,46 +85,18 @@ Function myfunction()
 End Function
 
 response.write("Date : " & myfunction() & "&nbsp")
-
-i=hour(time)
-If i < 10 Then
-   response.write("Good morning!" & "&nbsp")
-Else
-   response.write("Have a nice day!" & "&nbsp")
-End If
-
 'print what day
 d=weekday(Date)
-
-Select Case d
-  Case 1
-    response.write("Sleepy Sunday" & "<br><br>")
-  Case 2
-    response.write("Monday again!" & "<br><br>")
-  Case 3
-    response.write("Just Tuesday!" & "<br><br>")
-  Case 4
-    response.write("Wednesday!" & "<br><br>")
-  Case 5
-    response.write("Thursday..." & "<br><br>")
-  Case 6
-    response.write("Finally Friday!" & "<br><br>")
-  Case Else
-    response.write("Super Saturday!!!!" & "<br><br>")
-End Select
-%>
-<p>
+%>
+<div id="adv/info">
 <button>Ads ON/OFF</button>
-</p>
-<p>
 <button onclick="about()">About</button>
-</p>
-<!-- ************************* Advertisers rubric starts here ************************* -->
-<div id="ads">
-<h5>OUR ADVERTISERS</h5>
+</div>
+<!-- ************************* Advertisers rubric starts here ************************* --><h5>OUR ADVERTISERS</h5>
+<div id="ads" style="height:100px; width:1260px; border:1px solid black; background-color:white; margin-top:10px;">
   <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="a1">
       <img src="images/adver.png" alt="ad website" 
-        title="Your website can be here too !" style="box-shadow: 3px 3px 2px #585858;"
+        title="Your website can be here too !" style="box-shadow:3px 3px 2px #585858; margin-top:7px;"
         onclick='aclick("openpage.asp?id=2625")' id="a2">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="http://www.vlinks.co/vlinks_ads.asp" target="_blank" id="b1">
@@ -147,28 +120,24 @@ End Select
         onclick='aclick("openpage.asp?id=2625")' id="e2">
    </a>
 </div>
-<h1>Current status :</h1>
-<h2 style="color:green;"><%=web_qty%>&nbsp; websites</h2> 
-<h2 style="color:red;"><b><%=mas_qty%></b>&nbsp; messages</h2>
-<div id="buttons">  
+<h2>Current status :</h2>
+<h2 style="color:green;"><%=web_qty%>&nbsp; websites &nbsp; / &nbsp; <%=mas_qty%>&nbsp; messages</h2>
+<div id="buttons" style="height:100px; width:1260px;">  
 <input type="button" value="Waiting list" onclick="window.location='open_mass.asp'" id=button1 name=button1>
-<p>
 <input type="button" value="Todo list"  onclick="window.location='todo.html'" id=button4 name=button4>
 <input type="button" value="Search" onclick="window.location='search.asp'" id=button2 name=button2>
 <!--img src="images/search_button2.png"   alt="Search button" onclick="window.location='search.asp'"-->
 <input type="button" value="Add" onclick="window.location='new_url.asp'" >
 <input type="button" value="Update"  onclick="window.location='up_ur.asp'">
-</p>
-<!--input type="button" value="Update category"  onclick="window.location='up_cat.asp'" id=button3 name=button3-->
+<input type="button" value="Update category"  onclick="window.location='up_cat.asp'" id=button3 name=button3>
 <input type="button" value="Statistics" onclick="window.location='statisc.asp'" id=button5 name=button5>
-<input type="button" value="Counter" onclick="window.location='statisc1.asp'" id=button6 name=button6>  
+<!--input type="button" value="Counter" onclick="window.location='statisc1.asp'" id=button6 name=button6-->  
 </div>
+
 <div id="validator">
 <a href="http://validator.w3.org/check?uri=http%3A%2F%2Fwww.vlinks.co%2Fmanager.asp">
 <img src="http://www.w3.org/html/logo/badge/html5-badge-v-solo.png" alt="HTML5 Powered" title="HTML5 Powered">
 </a>
-</div><audio controls autoplay loop>
-  <source src="/sounds/HappyPills.mp3" type="audio/mpeg">
-</audio>
+</div>
 </body>
 </html>

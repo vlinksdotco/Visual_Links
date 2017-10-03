@@ -35,8 +35,8 @@ rs2.Open sql,conn
 <%do until rs2.EOF %>
 
    <tr>
-      <td style="border: 1px solid black; text-align:left; padding:15px">        <%=rs2("mem")%>      </td>
-      <td style="border: 1px solid black; text-align:left; padding:15px">        <%=rs2("url")%>      </td>
+      <td id="user_desc" style="border: 1px solid black; text-align:left; padding:15px">        <%=rs2("mem")%>      </td>
+      <td id="user_link" style="border: 1px solid black; text-align:left; padding:15px">        <%=rs2("url")%>      </td>
       <td style="border: 1px solid black; text-align:center; width:20px; padding:15px">        <input type="button" value="x" onclick="window.location='delet_mas.asp?id=<%=rs2("id")%>'">
       </td>
    </tr>

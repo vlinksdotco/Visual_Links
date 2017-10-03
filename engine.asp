@@ -5,7 +5,7 @@
      ' DATA FORMAT IN TEXT FILE= "username<SPACE>password"
 
      Set MyFileObject=Server.CreateObject("Scripting.FileSystemObject")
-     Set MyTextFile=MyFileObject.OpenTextFile(Server.MapPath("\passwords123.txt"))
+     Set MyTextFile=MyFileObject.OpenTextFile(Server.MapPath("\passwords123.bin"))
 
      ' Scan the text file to determine if the user is legal
      WHILE NOT MyTextFile.AtEndOfStream
